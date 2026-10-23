@@ -1,0 +1,5 @@
+base: ../evog_7b.yaml
+loss:
+  align_box: 0.0
+training:
+  output_dir: ${OUTPUT_ROOT:-/mnt/experiments/evog}/ablations/no_box_alignment

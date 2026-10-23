@@ -1,0 +1,5 @@
+base: ../evog_7b.yaml
+loss:
+  align_point: 0.0
+training:
+  output_dir: ${OUTPUT_ROOT:-/mnt/experiments/evog}/ablations/no_point_alignment

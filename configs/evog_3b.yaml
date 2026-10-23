@@ -1,0 +1,5 @@
+base: base.yaml
+model:
+  base_model: ${CHECKPOINT_ROOT:-/mnt/checkpoints/evog}/Qwen2.5-VL-3B-Instruct
+training:
+  output_dir: ${OUTPUT_ROOT:-/mnt/experiments/evog}/3b

@@ -1,0 +1,137 @@
+root: ${DATA_ROOT:-/mnt/dataset}
+datasets:
+  revos:
+    train:
+      format: video
+      metadata: rvos_root/ReVOS/meta_expressions_train_.json
+      images: rvos_root/ReVOS
+      mask_encoding: annotation_ids
+      mask_dictionary: rvos_root/ReVOS/mask_dict.json
+    valid:
+      format: video
+      metadata: rvos_root/ReVOS/meta_expressions_valid_.json
+      images: rvos_root/ReVOS
+      mask_encoding: annotation_ids
+      mask_dictionary: rvos_root/ReVOS/mask_dict.json
+  mevis:
+    train:
+      format: video
+      metadata: rvos_root/MeViS/train/meta_expressions.json
+      images: rvos_root/MeViS/train/JPEGImages
+      mask_encoding: annotation_ids
+      mask_dictionary: rvos_root/MeViS/train/mask_dict.json
+    valid_u:
+      format: video
+      metadata: rvos_root/MeViS/valid_u/meta_expressions.json
+      images: rvos_root/MeViS/valid_u/JPEGImages
+      mask_encoding: annotation_ids
+      mask_dictionary: rvos_root/MeViS/valid_u/mask_dict.json
+    valid:
+      format: video
+      metadata: rvos_root/MeViS/valid/meta_expressions.json
+      images: rvos_root/MeViS/valid/JPEGImages
+      mask_encoding: annotation_ids
+  ref_youtube_vos:
+    train:
+      format: video
+      metadata: rvos_root/Ref_Youtube_VOS/meta_expressions/train/meta_expressions.json
+      images: rvos_root/Ref_Youtube_VOS/train/JPEGImages
+      mask_encoding: expression_order
+      mask_dictionary: rvos_root/Ref_Youtube_VOS/mask_dict.pkl
+    valid:
+      format: video
+      metadata: rvos_root/Ref_Youtube_VOS/meta_expressions/valid/meta_expressions.json
+      images: rvos_root/Ref_Youtube_VOS/valid/JPEGImages
+      mask_encoding: expression_order
+  ref_davis17:
+    train:
+      format: video
+      metadata: rvos_root/ref_davis17/meta_expressions/train/meta_expressions.json
+      images: rvos_root/ref_davis17/DAVIS/JPEGImages/480p
+      mask_encoding: expression_order
+      mask_dictionary: rvos_root/ref_davis17/train/mask_dict.pkl
+    valid:
+      format: video
+      metadata: rvos_root/ref_davis17/meta_expressions/valid/meta_expressions.json
+      images: rvos_root/ref_davis17/DAVIS/JPEGImages/480p
+      mask_encoding: expression_order
+      mask_dictionary: rvos_root/ref_davis17/valid/mask_dict.pkl
+  refcoco:
+    train:
+      format: refer
+      split: train
+      references: lisa_root/refer_seg/refcoco/refs(unc).p
+      instances: lisa_root/refer_seg/refcoco/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+    val:
+      format: refer
+      split: val
+      references: lisa_root/refer_seg/refcoco/refs(unc).p
+      instances: lisa_root/refer_seg/refcoco/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+    testA:
+      format: refer
+      split: testA
+      references: lisa_root/refer_seg/refcoco/refs(unc).p
+      instances: lisa_root/refer_seg/refcoco/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+    testB:
+      format: refer
+      split: testB
+      references: lisa_root/refer_seg/refcoco/refs(unc).p
+      instances: lisa_root/refer_seg/refcoco/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+  refcoco_plus:
+    train:
+      format: refer
+      split: train
+      references: lisa_root/refer_seg/refcoco+/refs(unc).p
+      instances: lisa_root/refer_seg/refcoco+/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+    val:
+      format: refer
+      split: val
+      references: lisa_root/refer_seg/refcoco+/refs(unc).p
+      instances: lisa_root/refer_seg/refcoco+/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+    testA:
+      format: refer
+      split: testA
+      references: lisa_root/refer_seg/refcoco+/refs(unc).p
+      instances: lisa_root/refer_seg/refcoco+/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+    testB:
+      format: refer
+      split: testB
+      references: lisa_root/refer_seg/refcoco+/refs(unc).p
+      instances: lisa_root/refer_seg/refcoco+/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+  refcocog:
+    train:
+      format: refer
+      split: train
+      references: lisa_root/refer_seg/refcocog/refs(umd).p
+      instances: lisa_root/refer_seg/refcocog/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+    val:
+      format: refer
+      split: val
+      references: lisa_root/refer_seg/refcocog/refs(umd).p
+      instances: lisa_root/refer_seg/refcocog/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+    test:
+      format: refer
+      split: test
+      references: lisa_root/refer_seg/refcocog/refs(umd).p
+      instances: lisa_root/refer_seg/refcocog/instances.json
+      images: lisa_root/refer_seg/images/mscoco/images/train2014
+  reasonseg:
+    train:
+      format: reasonseg
+      images: lisa_root/reason_seg/ReasonSeg/train
+    val:
+      format: reasonseg
+      images: lisa_root/reason_seg/ReasonSeg/val
+    test:
+      format: reasonseg
+      images: lisa_root/reason_seg/ReasonSeg/test

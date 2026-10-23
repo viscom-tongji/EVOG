@@ -1,0 +1,5 @@
+base: ../evog_7b.yaml
+method:
+  query_alignment: false
+training:
+  output_dir: ${OUTPUT_ROOT:-/mnt/experiments/evog}/ablations/no_qda

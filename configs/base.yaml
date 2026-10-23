@@ -1,0 +1,64 @@
+model:
+  base_model: ${CHECKPOINT_ROOT:-/mnt/checkpoints/evog}/Qwen2.5-VL-7B-Instruct
+  dtype: bfloat16
+  min_pixels: 50176
+  max_pixels: 200704
+  max_context_tokens: 24000
+  fps: 2.0
+  points: 7
+  lora_rank: 16
+  lora_alpha: 32
+  lora_dropout: 0.0
+  lora_targets: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+  gradient_checkpointing: true
+  coordinate_temperature: 1.0
+sam2:
+  checkpoint: ${CHECKPOINT_ROOT:-/mnt/checkpoints/evog}/sam2.1_hiera_large.pt
+  config: configs/sam2.1/sam2.1_hiera_l.yaml
+cutie:
+  checkpoint: ${CHECKPOINT_ROOT:-/mnt/checkpoints/evog}/cutie-base-mega.pth
+  resnet_cache: ${CHECKPOINT_ROOT:-/mnt/checkpoints/evog}/resnet
+  max_internal_size: 480
+  mem_every: 5
+method:
+  train_refinements: 4
+  test_refinements: 2
+  query_alignment: true
+  keyframes: 3
+  selection: combined
+loss:
+  box_l1: 5.0
+  box_giou: 2.0
+  consistency_weight: 0.2
+  align_box: 1.0
+  align_point: 1.0
+  covariance_epsilon: 0.0001
+data:
+  root: ${DATA_ROOT:-/mnt/dataset}
+  train_manifests:
+    - ${MANIFEST_ROOT:-/mnt/dataset/evog_manifests}/revos_train.jsonl
+    - ${MANIFEST_ROOT:-/mnt/dataset/evog_manifests}/mevis_train.jsonl
+    - ${MANIFEST_ROOT:-/mnt/dataset/evog_manifests}/ref_youtube_vos_train.jsonl
+    - ${MANIFEST_ROOT:-/mnt/dataset/evog_manifests}/ref_davis17_train.jsonl
+    - ${MANIFEST_ROOT:-/mnt/dataset/evog_manifests}/refcoco_train.jsonl
+    - ${MANIFEST_ROOT:-/mnt/dataset/evog_manifests}/refcoco_plus_train.jsonl
+    - ${MANIFEST_ROOT:-/mnt/dataset/evog_manifests}/refcocog_train.jsonl
+    - ${MANIFEST_ROOT:-/mnt/dataset/evog_manifests}/reasonseg_train.jsonl
+  train_frames: 4
+  frame_interval: 10
+training:
+  seed: 42
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  warmup_steps: 100
+  epochs: 3
+  max_steps: 0
+  gradient_accumulation: 8
+  gradient_clip: 1.0
+  mixed_precision: bf16
+  workers: 2
+  save_every: 500
+  output_dir: ${OUTPUT_ROOT:-/mnt/experiments/evog}/7b
+inference:
+  chunk_frames: 8
+  overview_frames: 8
